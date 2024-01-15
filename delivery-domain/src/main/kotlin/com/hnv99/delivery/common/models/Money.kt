@@ -28,11 +28,11 @@ data class Money private constructor (
     }
 
     companion object {
-        fun from(value: Int): Money {
+        fun from(value: Long): Money {
             checkValue(value)
-            return Money(value.toLong())
+            return Money(value)
         }
-        private fun checkValue(value: Int) {
+        private fun checkValue(value: Long) {
             if (value < 0) {
                 throw IllegalArgumentException("Value must be greater than zero")
             }
