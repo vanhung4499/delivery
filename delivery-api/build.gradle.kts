@@ -16,7 +16,12 @@ plugins {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+
+    implementation(project(":delivery-application"))
+    implementation(project(":delivery-domain"))
+    implementation(project(":delivery-infrastructure:adapter-persistence-jpa"))
+    implementation(project(":delivery-infrastructure:adapter-configuration"))
 
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")
