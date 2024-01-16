@@ -14,7 +14,7 @@ private const val NOT_FOUND_SHOP_MESSAGE = "Shop information not found."
 class JpaShopPersistenceAdapter(
     private val shopRepository: ShopRepository,
     private val reservationRepository: ReservationRepository,
-) : SaveShopPort, LoadShopPort, LoadProductPort, LoadReservableTimePort, CheckExistenceShopPort {
+) : SaveShopPort, FineShopPort, FindProductPort, FindReservableTimePort, CheckExistenceShopPort {
 
     override fun save(shop: Shop): UUID {
         shopRepository.save(shop)
@@ -22,20 +22,20 @@ class JpaShopPersistenceAdapter(
         return shop.id
     }
 
-    override fun loadAllShop(): List<Shop> = shopRepository.findAll()
+    override fun findAllShop(): List<Shop> = shopRepository.findAll()
 
-    override fun loadShopById(shopId: UUID): Shop {
+    override fun findById(shopId: UUID): Shop {
         return shopRepository.findById(shopId)
             .orElseThrow { throw EntityNotFoundException(NOT_FOUND_SHOP_MESSAGE) }
     }
 
-    override fun loadAllProductByShopId(shopId: UUID): List<Product> {
+    override fun findAllProductByShopId(shopId: UUID): List<Product> {
         return shopRepository.findWithProductsById(shopId)
             .orElseThrow { throw EntityNotFoundException(NOT_FOUND_SHOP_MESSAGE) }
     .products
     }
 
-    override fun loadAllReservableTimeByShopId(shopId: UUID): List<LocalTime> {
+    override fun findAllReservableTimeByShopId(shopId: UUID): List<LocalTime> {
         return shopRepository.findWithReservableTimesById(shopId)
             .orElseThrow { throw EntityNotFoundException(NOT_FOUND_SHOP_MESSAGE) }
             .reservableTimes

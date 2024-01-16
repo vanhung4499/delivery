@@ -3,8 +3,8 @@ package com.hnv99.delivery.reservation.persistence
 import com.hnv99.delivery.common.exception.EntityNotFoundException
 import com.hnv99.delivery.reservation.application.port.input.ReservationResponse
 import com.hnv99.delivery.reservation.application.port.input.ReservedProduct
-import com.hnv99.delivery.reservation.application.port.output.LoadPaymentPort
-import com.hnv99.delivery.reservation.application.port.output.LoadReservationPort
+import com.hnv99.delivery.reservation.application.port.output.FindPaymentPort
+import com.hnv99.delivery.reservation.application.port.output.FindReservationPort
 import com.hnv99.delivery.reservation.application.port.output.SavePaymentPort
 import com.hnv99.delivery.reservation.application.port.output.SaveReservationPort
 import com.hnv99.delivery.reservation.domain.payment.Payment
@@ -18,7 +18,7 @@ private const val NOT_FOUND_PAYMENT_MESSAGE = "This payment does not exist."
 class JpaReservationPersistenceAdapter(
     private val reservationRepository: ReservationRepository,
     private val paymentRepository: PaymentRepository,
-) : SaveReservationPort, SavePaymentPort, LoadReservationPort, LoadPaymentPort {
+) : SaveReservationPort, SavePaymentPort, FindReservationPort, FindPaymentPort {
     override fun save(reservation: Reservation): UUID {
         reservationRepository.save(reservation)
         return reservation.id
@@ -30,12 +30,12 @@ class JpaReservationPersistenceAdapter(
         return payment.id
     }
 
-    override fun loadReservationById(reservationId: UUID): Reservation {
+    override fun findReservationById(reservationId: UUID): Reservation {
         return reservationRepository.findById(reservationId)
             .orElseThrow { throw EntityNotFoundException(NOT_FOUND_RESERVATION_MESSAGE) }
     }
 
-    override fun loadPaymentByReservationId(reservationId: UUID): Payment {
+    override fun findPaymentByReservationId(reservationId: UUID): Payment {
         return paymentRepository.findByReservationId(reservationId)
             .orElseThrow { throw EntityNotFoundException(NOT_FOUND_PAYMENT_MESSAGE) }
     }
@@ -47,7 +47,7 @@ class JpaReservationPersistenceAdapter(
         return mapToReservationResponse(reservation)
     }
 
-    override fun queryAllReservationByShopId(shopId: UUID): List<ReservationResponse> {
+    override fun findAllReservationByShopId(shopId: UUID): List<ReservationResponse> {
         val reservations = reservationRepository.findAllByShopId(shopId)
 
         return reservations.map { mapToReservationResponse(it) }

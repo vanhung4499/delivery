@@ -6,7 +6,9 @@ include(
     "delivery-domain",
     "delivery-infrastructure:adapter-configuration",
     "delivery-infrastructure:adapter-persistence-jpa",
+    "delivery-infrastructure:adapter-firebase-notification"
 )
+
 
 pluginManagement {
     val kotlinVersion: String by settings

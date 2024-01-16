@@ -5,5 +5,4 @@ import java.util.*
 
 interface SaveReservationPort {
     fun save(reservation: Reservation): UUID
-
 }

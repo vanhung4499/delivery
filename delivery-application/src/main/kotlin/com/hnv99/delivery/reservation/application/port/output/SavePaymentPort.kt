@@ -5,5 +5,4 @@ import java.util.*
 
 interface SavePaymentPort {
     fun save(payment: Payment): UUID
-
 }

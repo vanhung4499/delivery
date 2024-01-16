@@ -4,5 +4,5 @@ import java.time.LocalTime
 import java.util.UUID
 
 interface GetReservableTimeUseCase {
-    fun loadAllReservableTimeByShopId(shopId: UUID): List<LocalTime>
+    fun findAllReservableTimeByShopId(shopId: UUID): List<LocalTime>
 }

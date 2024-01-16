@@ -22,6 +22,7 @@ dependencies {
     implementation(project(":delivery-domain"))
     implementation(project(":delivery-infrastructure:adapter-persistence-jpa"))
     implementation(project(":delivery-infrastructure:adapter-configuration"))
+    implementation(project(":delivery-infrastructure:adapter-firebase-notification"))
 
     testImplementation("org.springframework.restdocs:spring-restdocs-mockmvc")
     asciidoctorExt("org.springframework.restdocs:spring-restdocs-asciidoctor")

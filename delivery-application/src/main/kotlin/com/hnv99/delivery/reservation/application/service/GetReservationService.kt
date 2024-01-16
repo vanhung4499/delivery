@@ -2,7 +2,7 @@ package com.hnv99.delivery.reservation.application.service
 
 import com.hnv99.delivery.reservation.application.port.input.GetReservationUseCase
 import com.hnv99.delivery.reservation.application.port.input.ReservationResponse
-import com.hnv99.delivery.reservation.application.port.output.LoadReservationPort
+import com.hnv99.delivery.reservation.application.port.output.FindReservationPort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -10,12 +10,12 @@ import java.util.*
 @Service
 @Transactional(readOnly = true)
 class GetReservationService(
-    private val loadReservationPort: LoadReservationPort
+    private val findReservationPort: FindReservationPort
 ) : GetReservationUseCase {
 
-    override fun loadReservationById(reservationId: UUID) =
-        loadReservationPort.queryReservationById(reservationId)
+    override fun findReservationById(reservationId: UUID) =
+        findReservationPort.queryReservationById(reservationId)
 
-    override fun loadAllReservationByShopId(shopId: UUID): List<ReservationResponse> =
-        loadReservationPort.queryAllReservationByShopId(shopId)
+    override fun findAllReservationByShopId(shopId: UUID): List<ReservationResponse> =
+        findReservationPort.findAllReservationByShopId(shopId)
 }

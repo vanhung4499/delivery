@@ -4,5 +4,4 @@ import java.util.*
 
 interface RejectReservationUseCase {
     fun reject(reservationId: UUID)
-
 }

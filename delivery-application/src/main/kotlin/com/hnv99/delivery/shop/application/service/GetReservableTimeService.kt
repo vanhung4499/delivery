@@ -1,7 +1,7 @@
 package com.hnv99.delivery.shop.application.service
 
 import com.hnv99.delivery.shop.application.port.input.GetReservableTimeUseCase
-import com.hnv99.delivery.shop.application.port.output.LoadReservableTimePort
+import com.hnv99.delivery.shop.application.port.output.FindReservableTimePort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.UUID
@@ -9,7 +9,7 @@ import java.util.UUID
 @Service
 @Transactional(readOnly = true)
 class GetReservableTimeService(
-    private val loadReservableTimePort: LoadReservableTimePort
+    private val loadReservableTimePort: FindReservableTimePort
 ) : GetReservableTimeUseCase {
-    override fun loadAllReservableTimeByShopId(shopId: UUID) = loadReservableTimePort.loadAllReservableTimeByShopId(shopId)
+    override fun findAllReservableTimeByShopId(shopId: UUID) = loadReservableTimePort.findAllReservableTimeByShopId(shopId)
 }
