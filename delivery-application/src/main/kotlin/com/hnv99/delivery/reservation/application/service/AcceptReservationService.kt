@@ -1,5 +1,6 @@
 package com.hnv99.delivery.reservation.application.service
 
+import com.hnv99.delivery.reservation.application.port.input.AcceptReservationUseCase
 import com.hnv99.delivery.reservation.application.port.output.FindReservationPort
 import com.hnv99.delivery.reservation.application.port.output.SendAcceptedReservationMessagePort
 import org.springframework.stereotype.Service
@@ -11,9 +12,9 @@ import java.util.UUID
 class AcceptReservationService(
     private val findReservationPort: FindReservationPort,
     private val sendAcceptedReservationMessagePort: SendAcceptedReservationMessagePort
-) {
+) : AcceptReservationUseCase {
     @Transactional
-    fun accept(reservationId: UUID) {
+    override fun accept(reservationId: UUID) {
         val reservation = findReservationPort.findReservationById(reservationId)
         reservation.accept()
         sendAcceptedReservationMessagePort.sendAcceptedReservationMessage()

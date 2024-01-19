@@ -1,14 +1,14 @@
 package com.hnv99.delivery.shop.application.service
 
 import com.hnv99.delivery.shop.application.port.input.UpdateShopStatusUseCase
-import com.hnv99.delivery.shop.application.port.output.CheckExistenceShopPort
-import com.hnv99.delivery.shop.application.port.output.FineShopPort
+import com.hnv99.delivery.shop.application.port.output.CheckExistShopPort
+import com.hnv99.delivery.shop.application.port.output.FindShopPort
 import com.hnv99.delivery.shop.domain.shop.Shop
 import java.util.UUID
 
 class UpdateShopStatusService(
-    private val checkExistenceShopPort: CheckExistenceShopPort,
-    private val loadShopPort: FineShopPort
+    private val checkExistenceShopPort: CheckExistShopPort,
+    private val loadShopPort: FindShopPort
 ) : UpdateShopStatusUseCase {
     override fun update(shopId: UUID) {
         val shop = loadShopPort.findById(shopId)

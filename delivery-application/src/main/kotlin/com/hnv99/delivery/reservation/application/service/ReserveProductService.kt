@@ -4,7 +4,7 @@ import com.hnv99.delivery.reservation.application.port.input.ReserveProductReque
 import com.hnv99.delivery.reservation.application.port.input.ReserveProductUseCase
 import com.hnv99.delivery.reservation.application.port.output.SaveReservationPort
 import com.hnv99.delivery.reservation.domain.reservation.Reservation
-import com.hnv99.delivery.shop.application.port.output.FineShopPort
+import com.hnv99.delivery.shop.application.port.output.FindShopPort
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -13,7 +13,7 @@ import java.util.*
 @Service
 @Transactional(readOnly = true)
 class ReserveProductService(
-    private val loadShopPort: FineShopPort,
+    private val loadShopPort: FindShopPort,
     private val saveReservationPort: SaveReservationPort
 ) : ReserveProductUseCase {
 

@@ -10,11 +10,12 @@ import java.time.LocalTime
 import java.util.UUID
 
 private const val NOT_FOUND_SHOP_MESSAGE = "Shop information not found."
+
 @Repository
 class JpaShopPersistenceAdapter(
     private val shopRepository: ShopRepository,
     private val reservationRepository: ReservationRepository,
-) : SaveShopPort, FineShopPort, FindProductPort, FindReservableTimePort, CheckExistenceShopPort {
+) : SaveShopPort, FindShopPort, FindProductPort, FindReservableTimePort, CheckExistShopPort {
 
     override fun save(shop: Shop): UUID {
         shopRepository.save(shop)

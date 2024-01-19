@@ -6,7 +6,8 @@ include(
     "delivery-domain",
     "delivery-infrastructure:adapter-configuration",
     "delivery-infrastructure:adapter-persistence-jpa",
-    "delivery-infrastructure:adapter-firebase-notification"
+    "delivery-infrastructure:adapter-firebase-notification",
+    "delivery-infrastructure:adapter-payment-gateway-momo",
 )
 
 
